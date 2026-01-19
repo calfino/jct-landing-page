@@ -175,7 +175,7 @@ export default function Home() {
         <div className={styles.heroContent}>
           <p className={styles.greeting}>Hello, I'm</p>
           <h1 className={styles.name}>Johannes Calvin</h1>
-          <h2 className={styles.title}>Software Developer & Network Specialist</h2>
+          <h2 className={styles.title}>Senior Software Developer & Ex Network Engineer</h2>
 
           <div className={styles.location}>
             <MapPin className={styles.locationIcon} />
@@ -370,7 +370,7 @@ export default function Home() {
       {/* Footer */}
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <p className={styles.footerText}>© 2025 Johannes Calvin. Software Developer & Network Specialist.</p>
+          <p className={styles.footerText}>© 2025 Johannes Calvin. Software Developer & Ex Network Specialist.</p>
           <div className={styles.footerLinks}>
             <a href="mailto:calvintjahaja@gmail.com" className={styles.footerLink}>
               <Mail className={styles.footerLinkIcon} />
