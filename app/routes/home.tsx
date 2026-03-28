@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import type { Route } from "./+types/home";
 import styles from "./home.module.css";
 import {
@@ -16,7 +17,7 @@ import {
   Mail,
 } from "lucide-react";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ }: Route.MetaArgs) {
   return [
     { title: "Johannes Calvin - Software Developer" },
     {
@@ -163,7 +164,44 @@ const projects = [
   },
 ];
 
+const roles = [
+  "Frontend Developer",
+  "Ex QA Engineer",
+  "Ex Network Engineer"
+];
+
 export default function Home() {
+  const [roleText, setRoleText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    let ticker = setTimeout(() => {
+      const i = loopNum % roles.length;
+      const fullText = roles[i];
+
+      let updatedText = isDeleting
+        ? fullText.substring(0, roleText.length - 1)
+        : fullText.substring(0, roleText.length + 1);
+
+      setRoleText(updatedText);
+
+      if (!isDeleting && updatedText === fullText) {
+        setTypingSpeed(1500);
+        setIsDeleting(true);
+      } else if (isDeleting && updatedText === '') {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+        setTypingSpeed(500);
+      } else {
+        setTypingSpeed(isDeleting ? 30 : 100);
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(ticker);
+  }, [roleText, isDeleting, loopNum, typingSpeed]);
+
   const scrollToContent = () => {
     document.getElementById("summary")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -173,9 +211,15 @@ export default function Home() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
+          <div className={styles.avatarContainer}>
+            <img src="/pp.png" alt="Johannes Calvin" className={styles.avatar} />
+          </div>
           <p className={styles.greeting}>Hello, I'm</p>
-          <h1 className={styles.name}>Johannes Calvin</h1>
-          <h2 className={styles.title}>Senior Software Developer & Ex Network Engineer</h2>
+          <h1 className={styles.name}>Johannes Calvin Tjahaja</h1>
+          <h2 className={styles.title}>
+            {roleText}
+            <span className={styles.cursor}>|</span>
+          </h2>
 
           <div className={styles.location}>
             <MapPin className={styles.locationIcon} />

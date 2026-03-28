@@ -9,63 +9,54 @@ html {
 }
 
 html {
-  /* Neutral colors */
-  --color-neutral-1: var(--slate-1);
-  --color-neutral-2: var(--slate-2);
-  --color-neutral-3: var(--slate-3);
-  --color-neutral-4: var(--slate-4);
-  --color-neutral-5: var(--slate-5);
-  --color-neutral-6: var(--slate-6);
-  --color-neutral-7: var(--slate-7);
-  --color-neutral-8: var(--slate-8);
-  --color-neutral-9: var(--slate-9);
-  --color-neutral-10: var(--slate-10);
-  --color-neutral-11: var(--slate-11);
-  --color-neutral-12: var(--slate-12);
-  --color-neutral-contrast: var(--slate-contrast);
+  /* Neutral colors - Deep dark tones */
+  --color-neutral-1: #0A0A0F;
+  --color-neutral-2: #12121A;
+  --color-neutral-3: #1C1C28;
+  --color-neutral-4: #28283E;
+  --color-neutral-5: #353554;
+  --color-neutral-6: #424269;
+  --color-neutral-7: #515180;
+  --color-neutral-8: #616196;
+  --color-neutral-9: #7272AC;
+  --color-neutral-10: #8888BF;
+  --color-neutral-11: #B0B0D6;
+  --color-neutral-12: #E0E0F0;
+  --color-neutral-contrast: #FFFFFF;
 
-  /* Accent colors - Indigo for professional, trustworthy feel */
-  --color-accent-1: var(--indigo-1);
-  --color-accent-2: var(--indigo-2);
-  --color-accent-3: var(--indigo-3);
-  --color-accent-4: var(--indigo-4);
-  --color-accent-5: var(--indigo-5);
-  --color-accent-6: var(--indigo-6);
-  --color-accent-7: var(--indigo-7);
-  --color-accent-8: var(--indigo-8);
-  --color-accent-9: var(--indigo-9);
-  --color-accent-10: var(--indigo-10);
-  --color-accent-11: var(--indigo-11);
-  --color-accent-12: var(--indigo-12);
-  --color-accent-contrast: var(--indigo-contrast);
+  /* Accent colors - Electric Neon Cyan/Blue */
+  --color-accent-1: #001A22;
+  --color-accent-2: #002838;
+  --color-accent-3: #00374C;
+  --color-accent-4: #004A6B;
+  --color-accent-5: #005F88;
+  --color-accent-6: #0077AB;
+  --color-accent-7: #0093D1;
+  --color-accent-8: #00B1FC;
+  --color-accent-9: #00F0FF;
+  /* Primary Neon Cyan */
+  --color-accent-10: #4DF5FF;
+  --color-accent-11: #80F8FF;
+  --color-accent-12: #B3FBFF;
+  --color-accent-contrast: #0A0A0F;
 
-  /* Error colors */
-  --color-error-1: var(--red-1);
-  --color-error-2: var(--red-2);
-  --color-error-3: var(--red-3);
-  --color-error-4: var(--red-4);
-  --color-error-5: var(--red-5);
-  --color-error-6: var(--red-6);
-  --color-error-7: var(--red-7);
-  --color-error-8: var(--red-8);
-  --color-error-9: var(--red-9);
-  --color-error-10: var(--red-10);
-  --color-error-11: var(--red-11);
-  --color-error-12: var(--red-12);
-  --color-error-contrast: var(--red-contrast);
+  /* Success colors - Neon Purple/Pink for dynamic secondary */
+  --color-success-1: #1C0A35;
+  --color-success-2: #2B0D53;
+  --color-success-3: #3B0F74;
+  --color-success-4: #4E129A;
+  --color-success-5: #6316C4;
+  --color-success-6: #7C1DF5;
+  --color-success-7: #933BFF;
+  --color-success-8: #A95AFF;
+  --color-success-9: #B026FF;
+  /* Primary Neon Purple */
+  --color-success-10: #C25FFF;
+  --color-success-11: #D58AFF;
+  --color-success-12: #E8B9FF;
+  --color-success-contrast: #FFFFFF;
 
-  /* Success colors - Teal for modern, tech-forward accent */
-  --color-success-1: var(--teal-1);
-  --color-success-2: var(--teal-2);
-  --color-success-3: var(--teal-3);
-  --color-success-4: var(--teal-4);
-  --color-success-5: var(--teal-5);
-  --color-success-6: var(--teal-6);
-  --color-success-7: var(--teal-7);
-  --color-success-8: var(--teal-8);
-  --color-success-9: var(--teal-9);
-  --color-success-10: var(--teal-10);
-  --color-success-11: var(--teal-11);
-  --color-success-12: var(--teal-12);
-  --color-success-contrast: var(--teal-contrast);
+  /* Utility glows */
+  --shadow-glow-accent: 0 0 20px rgba(0, 240, 255, 0.4);
+  --shadow-glow-success: 0 0 20px rgba(176, 38, 255, 0.4);
 }
