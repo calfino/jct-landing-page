@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import type { Route } from "./+types/home";
 import styles from "./home.module.css";
 import {
@@ -15,11 +15,14 @@ import {
   BookOpen,
   ExternalLink,
   Mail,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
 
 export function meta({ }: Route.MetaArgs) {
   return [
-    { title: "Johannes Calvin - Software Developer" },
+    { title: "Johannes Calvin - Software Engineer" },
     {
       name: "description",
       content:
@@ -33,8 +36,11 @@ const experiences = [
     period: "Feb 2025 – Present",
     role: "Software Engineer (Frontend)",
     company: "PT Bank Central Asia Tbk (BCA) – Banking",
-    description:
-      "Developing Ocean platform; delivering UI features with modern frameworks; collaborating with a 10,001+ employee engineering team.",
+    description: (
+      <>
+        Developing <a href="https://ocean.bca.co.id" target="_blank" rel="noopener noreferrer" className={styles.inlineLink}>Ocean by BCA</a>.
+      </>
+    ),
   },
   {
     period: "Oct 2018 – Present",
@@ -53,37 +59,37 @@ const experiences = [
   {
     period: "Jul 2021 – Mar 2023",
     role: "Quality Assurance Engineer",
-    company: "Nodeflux Teknologi Indonesia – IT Services",
-    description: "Executed QA processes for AI-driven video analytics; ensured data integrity across IoT pipelines.",
+    company: "Nodeflux Teknologi Indonesia",
+    description: "Executed QA processes for AI-driven video analytics; ensured data integrity across IoT pipelines and web applications.",
   },
   {
     period: "Jun 2019 – Aug 2019",
     role: "Software Engineer Intern",
     company: "ExxonMobil – Oil & Gas",
-    description: "Built full-stack web app using AngularJS & SharePoint API; liaised with clients on feature specs.",
+    description: "Built full-stack web app using AngularJS & SharePoint API; liaised with procurement team to build procurement internal web app.",
   },
 ];
 
 const education = [
   {
-    degree: "Magister Teknik (M.T.) – Electrical Engineering",
+    degree: "IGCSE, A-Level",
+    institution: "Penabur International School",
+    years: "2012 – 2015",
+    highlight: "International school with Cambridge curriculum",
+  },
+  {
+    degree: "Bachelor Degree  Computer Engineering",
+    institution: "University of Indonesia",
+    years: "2016 – 2019",
+    highlight: "Thesis: Design and Evaluation of Cloud Architecture Data Warehouse for Telehealth based on IoT",
+  },
+  {
+    degree: "Master Degree  Computer Engineering",
     institution: "University of Indonesia",
     years: "2019 – 2021",
     highlight:
       "Thesis: Processing Real-Time Data Architecture Optimization for Health Management System based on Cloud",
-  },
-  {
-    degree: "Sarjana Teknik (S.T.) – Computer Engineering",
-    institution: "University of Indonesia",
-    years: "2015 – 2019",
-    highlight: "Thesis: Design and Evaluation of Cloud Architecture Data Warehouse for Telehealth based on IoT",
-  },
-  {
-    degree: "IGCSE, A-Level",
-    institution: "Penabur International School, Tanjung Duren",
-    years: "2012 – 2015",
-    highlight: "International curriculum with focus on STEM subjects",
-  },
+  }
 ];
 
 const skills = [
@@ -111,16 +117,30 @@ const skills = [
 
 const publications = [
   {
-    title: "IoT Cloud Data Warehouse Management for Telehealth Purpose",
+    title: (
+      <a
+        href="https://www.researchgate.net/publication/350335262_IoT_cloud_data_warehouse_management_for_telehealth_purpose"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.inlineLink}
+      >
+        IoT Cloud Data Warehouse Management for Telehealth Purpose
+      </a>
+    ),
     date: "March 2021",
   },
   {
-    title: "Indonesia Symposium on Robotic Systems and Control (ISRSC)",
-    date: "July 2018",
-  },
-  {
-    title: "Implementation of Socket Priority Module for UAV Network using FlyNetSimulator",
-    date: "2018",
+    title: (
+      <a
+        href="https://iopscience.iop.org/article/10.1088/1757-899X/1077/1/012021"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.inlineLink}
+      >
+        Implementation of Socket Priority Module for UAV Network using FlyNetSimulator
+      </a>
+    ),
+    date: "January 2021",
   },
 ];
 
@@ -137,44 +157,76 @@ const certifications = [
   "What is Data Science? – IBM",
 ];
 
-const projects = [
+const portfolio = [
   {
-    title: "Jalur5",
-    description:
-      "Founded and built Indonesia's largest public-transport information community. Developed web portal and social media network providing real-time schedules for Indonesian commuters.",
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
-    links: [
-      { label: "Instagram", url: "https://instagram.com/jalur5", icon: ExternalLink },
-      { label: "YouTube", url: "https://youtube.com/@jalur5", icon: Youtube },
-    ],
+    title: "Ocean by BCA",
+    description: "Enterprise web application developed for BCA.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    links: [{ label: "Visit Website", url: "https://ocean.bca.co.id/", icon: ExternalLink }],
   },
   {
-    title: "Research Publications",
-    description:
-      "Published multiple research papers on cloud-based healthcare data management, IoT systems, and network optimization. Available on ResearchGate.",
-    image: "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?w=800&q=80",
-    links: [{ label: "ResearchGate", url: "https://www.researchgate.net/publication/350335262_IoT_cloud_data_warehouse_management_for_telehealth_purpose", icon: BookOpen }],
+    title: "SmartSales",
+    description: "Sales tracking and management platform.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    links: [{ label: "Visit Website", url: "https://smartsales.id/", icon: ExternalLink }],
   },
   {
-    title: "Open Source Contributions",
-    description:
-      "Active contributor to open-source projects with repositories focusing on network simulation, data processing, and web development tools.",
-    image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&q=80",
-    links: [{ label: "GitHub", url: "https://github.com/calfino", icon: Github }],
+    title: "TravelingYuk",
+    description: "Travel planning and booking web application.",
+    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80",
+    links: [{ label: "Visit Website", url: "https://travelingyuk.vercel.app/", icon: ExternalLink }],
+  },
+  {
+    title: "Johannes Calvin",
+    description: "Personal landing page and resume portfolio.",
+    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80",
+    links: [{ label: "Visit Website", url: "https://johannes-calvin.vercel.app/", icon: ExternalLink }],
   },
 ];
 
 const roles = [
-  "Frontend Developer",
+  "Software Engineer",
   "Ex QA Engineer",
   "Ex Network Engineer"
 ];
 
+const techStack = [
+  { name: "Bootstrap", icon: "https://cdn.simpleicons.org/bootstrap/7952B3" },
+  { name: "Material UI", icon: "https://cdn.simpleicons.org/mui/007FFF" },
+  { name: "MySQL", icon: "https://cdn.simpleicons.org/mysql/4479A1" },
+  { name: "Git", icon: "https://cdn.simpleicons.org/git/F05032" },
+  { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+  { name: "Docker", icon: "https://cdn.simpleicons.org/docker/2496ED" },
+  { name: "Figma", icon: "https://cdn.simpleicons.org/figma/F24E1E" },
+  { name: "Firebase", icon: "https://cdn.simpleicons.org/firebase/FFCA28" },
+  { name: "Tailwind", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
+  { name: "Springboot", icon: "https://cdn.simpleicons.org/springboot/6DB33F" },
+  { name: "Node.js", icon: "https://cdn.simpleicons.org/nodedotjs/339933" },
+  { name: "Angular", icon: "https://cdn.simpleicons.org/angular/DD0031" },
+  { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/ffffff" },
+  { name: "HTML", icon: "https://cdn.simpleicons.org/html5/E34F26" },
+  { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-plain.svg" },
+  { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+  { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
+];
+
 export default function Home() {
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
   const [roleText, setRoleText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate(${e.clientX - 750}px, ${e.clientY - 750}px)`;
+      }
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   useEffect(() => {
     let ticker = setTimeout(() => {
@@ -208,11 +260,12 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
+      <div ref={cursorRef} className={styles.cursorGlow} />
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <div className={styles.avatarContainer}>
-            <img src="/pp.png" alt="Johannes Calvin" className={styles.avatar} />
+            <img src="/pp-jct.png" alt="Johannes Calvin" className={styles.avatar} />
           </div>
           <p className={styles.greeting}>Hello, I'm</p>
           <h1 className={styles.name}>Johannes Calvin Tjahaja</h1>
@@ -234,7 +287,6 @@ export default function Home() {
               rel="noopener noreferrer"
             >
               <Linkedin className={styles.socialIcon} />
-              <span>LinkedIn</span>
             </a>
             <a
               href="https://github.com/calfino"
@@ -243,16 +295,6 @@ export default function Home() {
               rel="noopener noreferrer"
             >
               <Github className={styles.socialIcon} />
-              <span>GitHub</span>
-            </a>
-            <a
-              href="https://youtube.com/@jalur5"
-              className={styles.socialLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Youtube className={styles.socialIcon} />
-              <span>YouTube</span>
             </a>
           </div>
 
@@ -263,15 +305,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Professional Summary */}
-      <section id="summary" className={styles.section}>
-        <h2 className={styles.sectionTitle}>Professional Summary</h2>
-        <div className={styles.summary}>
-          Software Engineer with 6+ years of experience building front-end solutions for PT Bank Central Asia (BCA)
-          while also managing large-scale network and cloud infrastructure projects (AWS, GCP). Co-founder of Jalur5,
-          Indonesia's leading public-transport information community, and author of research papers on IoT-enabled
-          healthcare data warehouses. Skilled in full-stack development, SDN, routing, firewalls, big-data pipelines,
-          and DevOps tooling.
+      {/* About Me Section */}
+      <section id="summary" className={styles.aboutSection}>
+        <div className={styles.aboutContent}>
+          <div className={styles.aboutTextContainer}>
+            <h2 className={styles.aboutTitle}>WHO I AM?</h2>
+            <p className={styles.aboutParagraph}>
+              My name is Johannes Calvin Tjahaja. I am a professional and enthusiastic programmer in my daily life. I am a quick learner with a self-learning attitude. I love to learn and explore new technologies and am passionate about problem-solving. I love almost all the stacks of web application development and love to make the web more open to the world. My core skill is based on JavaScript and I love to do most of the things using JavaScript. I am available for any kind of job opportunity that suits my skills and interests.
+            </p>
+          </div>
+          <div className={styles.aboutImageContainer}>
+            <img src="/pp.png" alt="About Me" className={styles.aboutImage} />
+          </div>
+          <div className={styles.aboutVerticalText}>
+            ABOUT ME
+          </div>
         </div>
       </section>
 
@@ -311,26 +359,63 @@ export default function Home() {
 
       {/* Skills */}
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Technical Skills</h2>
-        <div className={styles.skillsGrid}>
-          {skills.map((skillGroup, index) => {
-            const IconComponent = skillGroup.icon;
-            return (
-              <div key={index} className={styles.skillCategory}>
-                <h3 className={styles.skillCategoryTitle}>
-                  <IconComponent className={styles.skillIcon} />
-                  {skillGroup.category}
-                </h3>
-                <ul className={styles.skillList}>
-                  {skillGroup.items.map((skill, idx) => (
-                    <li key={idx} className={styles.skillTag}>
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
+        <div className={styles.skillsCarouselHeader}>
+          <hr className={styles.skillsLine} />
+          <h2 className={styles.carouselTitle}>Skills</h2>
+          <hr className={styles.skillsLine} />
+        </div>
+        <div className={styles.carouselContainer}>
+          <button className={styles.carouselButton} onClick={() => emblaApi?.scrollPrev()}>
+            <ChevronLeft />
+          </button>
+          <div className={styles.embla} ref={emblaRef}>
+            <div className={styles.embla__container}>
+              {techStack.map((tech, idx) => (
+                <div className={styles.embla__slide} key={idx}>
+                  <div className={styles.techCard}>
+                    <img src={tech.icon} alt={tech.name} className={styles.techIcon} />
+                    <span className={styles.techName}>{tech.name}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <button className={styles.carouselButton} onClick={() => emblaApi?.scrollNext()}>
+            <ChevronRight />
+          </button>
+        </div>
+      </section>
+
+      {/* Projects */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Projects</h2>
+        <div className={styles.projectsGrid}>
+          {portfolio.map((project, index) => (
+            <div key={index} className={styles.projectCard}>
+              <img src={project.image} alt={project.title} className={styles.projectImage} />
+              <div className={styles.projectContent}>
+                <h3 className={styles.projectTitle}>{project.title}</h3>
+                <p className={styles.projectDescription}>{project.description}</p>
+                <div className={styles.projectLinks}>
+                  {project.links.map((link, idx) => {
+                    const LinkIcon = link.icon;
+                    return (
+                      <a
+                        key={idx}
+                        href={link.url}
+                        className={styles.projectLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <LinkIcon className={styles.projectLinkIcon} />
+                        {link.label}
+                      </a>
+                    );
+                  })}
+                </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -378,43 +463,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Projects & Community</h2>
-        <div className={styles.projectsGrid}>
-          {projects.map((project, index) => (
-            <div key={index} className={styles.projectCard}>
-              <img src={project.image} alt={project.title} className={styles.projectImage} />
-              <div className={styles.projectContent}>
-                <h3 className={styles.projectTitle}>{project.title}</h3>
-                <p className={styles.projectDescription}>{project.description}</p>
-                <div className={styles.projectLinks}>
-                  {project.links.map((link, idx) => {
-                    const LinkIcon = link.icon;
-                    return (
-                      <a
-                        key={idx}
-                        href={link.url}
-                        className={styles.projectLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <LinkIcon className={styles.projectLinkIcon} />
-                        {link.label}
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <p className={styles.footerText}>© 2025 Johannes Calvin. Software Developer & Ex Network Specialist.</p>
+          <p className={styles.footerText}>© 2026 Johannes Calvin. Software Engineer.</p>
           <div className={styles.footerLinks}>
             <a href="mailto:calvintjahaja@gmail.com" className={styles.footerLink}>
               <Mail className={styles.footerLinkIcon} />
