@@ -520,6 +520,8 @@
 .embla__container {
   display: flex;
   gap: var(--space-4);
+  /* Add padding to allow breathing room for box-shadow and hover transform */
+  padding: 20px 10px;
 }
 
 .embla__slide {
@@ -793,8 +795,9 @@
   }
 
   .socialLinks {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-3);
   }
 
   .section {
