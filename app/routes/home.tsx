@@ -43,8 +43,8 @@ const experiences = [
     ),
   },
   {
-    period: "Oct 2018 – Present",
-    role: "Co-Founder / C-Suite",
+    period: "Oct 2018 – March 2026",
+    role: "Co-Founder",
     company: "Jalur5 – Broadcast Media & Public Transport Community",
     description:
       "Built Indonesia's largest public-transport info hub; oversee product roadmap, community growth, and media channels (Instagram @jalur5, Twitter @jalur5_, YouTube).",
@@ -74,19 +74,16 @@ const education = [
   {
     degree: "IGCSE, A-Level",
     institution: "Penabur International School",
-    years: "2012 – 2015",
     highlight: "International school with Cambridge curriculum",
   },
   {
     degree: "Bachelor Degree  Computer Engineering",
     institution: "University of Indonesia",
-    years: "2016 – 2019",
     highlight: "Thesis: Design and Evaluation of Cloud Architecture Data Warehouse for Telehealth based on IoT",
   },
   {
     degree: "Master Degree  Computer Engineering",
     institution: "University of Indonesia",
-    years: "2019 – 2021",
     highlight:
       "Thesis: Processing Real-Time Data Architecture Optimization for Health Management System based on Cloud",
   }
@@ -350,7 +347,6 @@ export default function Home() {
             <div key={index} className={styles.educationCard}>
               <h3 className={styles.educationDegree}>{edu.degree}</h3>
               <p className={styles.educationInstitution}>{edu.institution}</p>
-              <p className={styles.educationYears}>{edu.years}</p>
               <p className={styles.educationHighlight}>{edu.highlight}</p>
             </div>
           ))}
