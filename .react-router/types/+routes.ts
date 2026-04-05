@@ -14,20 +14,54 @@ type Pages = {
   "/": {
     params: {};
   };
+  "/about": {
+    params: {};
+  };
+  "/projects": {
+    params: {};
+  };
+  "/blog": {
+    params: {};
+  };
+  "/blog/:slug": {
+    params: {
+      "slug": string;
+    };
+  };
 };
 
 type RouteFiles = {
   "root.tsx": {
     id: "root";
-    page: "/";
+    page: "/" | "/about" | "/projects" | "/blog" | "/blog/:slug";
   };
   "routes/home.tsx": {
     id: "routes/home";
     page: "/";
+  };
+  "routes/about.tsx": {
+    id: "routes/about";
+    page: "/about";
+  };
+  "routes/projects.tsx": {
+    id: "routes/projects";
+    page: "/projects";
+  };
+  "routes/blog.tsx": {
+    id: "routes/blog";
+    page: "/blog";
+  };
+  "routes/blog-detail.tsx": {
+    id: "routes/blog-detail";
+    page: "/blog/:slug";
   };
 };
 
 type RouteModules = {
   "root": typeof import("./app/root.tsx");
   "routes/home": typeof import("./app/routes/home.tsx");
+  "routes/about": typeof import("./app/routes/about.tsx");
+  "routes/projects": typeof import("./app/routes/projects.tsx");
+  "routes/blog": typeof import("./app/routes/blog.tsx");
+  "routes/blog-detail": typeof import("./app/routes/blog-detail.tsx");
 };

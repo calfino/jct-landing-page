@@ -1,8 +1,14 @@
 import { NavLink } from "react-router";
 import styles from "./Navbar.module.css";
-import { Search, Volume2, Moon, Rss } from "lucide-react";
+import { Search, Volume2, Moon, Sun, Rss } from "lucide-react";
+import { useColorScheme } from "../hooks/use-color-scheme";
 
 export function Navbar() {
+  const { resolvedScheme, setColorScheme } = useColorScheme();
+
+  const toggleTheme = () => {
+    setColorScheme(resolvedScheme === "dark" ? "light" : "dark");
+  };
   return (
     <nav className={styles.navbar}>
       <div className={styles.navContainer}>
@@ -12,7 +18,13 @@ export function Navbar() {
         
         <div className={styles.navLinks}>
           <NavLink to="/" className={({isActive}) => isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink}>
-            Articles
+            Home
+          </NavLink>
+          <NavLink to="/blog" className={({isActive}) => isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink}>
+            Blog
+          </NavLink>
+          <NavLink to="/projects" className={({isActive}) => isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink}>
+            Projects
           </NavLink>
           <NavLink to="/about" className={({isActive}) => isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink}>
             About
@@ -26,8 +38,8 @@ export function Navbar() {
           <button className={styles.actionButton} aria-label="Toggle Sound">
             <Volume2 size={20} />
           </button>
-          <button className={styles.actionButton} aria-label="Toggle Theme">
-            <Moon size={20} />
+          <button className={styles.actionButton} aria-label="Toggle Theme" onClick={toggleTheme}>
+            {resolvedScheme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
           <button className={styles.actionButton} aria-label="RSS Feed">
             <Rss size={20} />

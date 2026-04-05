@@ -8,7 +8,58 @@ html {
   --font-code: var(--font-size-fluid-0) var(--font-monospace-code);
 }
 
-html {
+html, html.light {
+  /* Neutral colors - Light tones */
+  --color-neutral-1: #FFFFFF;
+  --color-neutral-2: #FBFBFC;
+  --color-neutral-3: #F5F5F7;
+  --color-neutral-4: #EBEBEF;
+  --color-neutral-5: #E0E0E6;
+  --color-neutral-6: #D4D4DB;
+  --color-neutral-7: #C4C4CE;
+  --color-neutral-8: #B0B0BD;
+  --color-neutral-9: #9E9EAF;
+  --color-neutral-10: #8888BF;
+  --color-neutral-11: #6B6B86;
+  --color-neutral-12: #28283E;
+  --color-neutral-contrast: #0A0A0F;
+
+  /* Accent colors - Cyan/Blue (adapted for light mode) */
+  --color-accent-1: #F0FDFF;
+  --color-accent-2: #DDFBFF;
+  --color-accent-3: #C2FAFF;
+  --color-accent-4: #9FF5FF;
+  --color-accent-5: #78EDFF;
+  --color-accent-6: #4ADFFF;
+  --color-accent-7: #00CCEB;
+  --color-accent-8: #00ACCC;
+  --color-accent-9: #008AA8; 
+  --color-accent-10: #00748F;
+  --color-accent-11: #005F75;
+  --color-accent-12: #00374C;
+  --color-accent-contrast: #FFFFFF;
+
+  /* Success colors - Neon Purple/Pink */
+  --color-success-1: #FAF5FF;
+  --color-success-2: #F2E5FF;
+  --color-success-3: #E8CCFF;
+  --color-success-4: #DAAFFF;
+  --color-success-5: #C88DFF;
+  --color-success-6: #B565FF;
+  --color-success-7: #A342FF;
+  --color-success-8: #8F22FF;
+  --color-success-9: #760AC7;
+  --color-success-10: #6200A8;
+  --color-success-11: #51008C;
+  --color-success-12: #3B0F74;
+  --color-success-contrast: #FFFFFF;
+
+  /* Utility glows */
+  --shadow-glow-accent: 0 0 20px rgba(0, 138, 168, 0.4);
+  --shadow-glow-success: 0 0 20px rgba(118, 10, 199, 0.4);
+}
+
+html.dark {
   /* Neutral colors - Deep dark tones */
   --color-neutral-1: #0A0A0F;
   --color-neutral-2: #12121A;
