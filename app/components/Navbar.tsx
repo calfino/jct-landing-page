@@ -1,13 +1,19 @@
+import { useState } from "react";
 import { NavLink } from "react-router";
 import styles from "./Navbar.module.css";
-import { Search, Volume2, Moon, Sun, Rss } from "lucide-react";
+import { Search, Volume2, Moon, Sun, Rss, Menu, X } from "lucide-react";
 import { useColorScheme } from "../hooks/use-color-scheme";
 
 export function Navbar() {
   const { resolvedScheme, setColorScheme } = useColorScheme();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleTheme = () => {
     setColorScheme(resolvedScheme === "dark" ? "light" : "dark");
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
   return (
     <nav className={styles.navbar}>
@@ -16,17 +22,17 @@ export function Navbar() {
           <span className={styles.logoName}>Johannes Calvin</span>
         </NavLink>
         
-        <div className={styles.navLinks}>
-          <NavLink to="/" className={({isActive}) => isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink}>
+        <div className={`${styles.navLinks} ${isMobileMenuOpen ? styles.mobileOpen : ""}`}>
+          <NavLink to="/" className={({isActive}) => isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>
             Home
           </NavLink>
-          <NavLink to="/blog" className={({isActive}) => isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink}>
+          <NavLink to="/blog" className={({isActive}) => isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>
             Blog
           </NavLink>
-          <NavLink to="/projects" className={({isActive}) => isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink}>
+          <NavLink to="/projects" className={({isActive}) => isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>
             Projects
           </NavLink>
-          <NavLink to="/about" className={({isActive}) => isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink}>
+          <NavLink to="/about" className={({isActive}) => isActive ? `${styles.navLink} ${styles.activeLink}` : styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>
             About
           </NavLink>
         </div>
@@ -43,6 +49,9 @@ export function Navbar() {
           </button>
           <button className={styles.actionButton} aria-label="RSS Feed">
             <Rss size={20} />
+          </button>
+          <button className={styles.mobileMenuButton} aria-label="Toggle Menu" onClick={toggleMobileMenu}>
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
