@@ -271,10 +271,10 @@ export default function Home() {
             <span className={styles.cursor}>|</span>
           </h2>
 
-          <div className={styles.location}>
+          {/* <div className={styles.location}>
             <MapPin className={styles.locationIcon} />
             <span>Jakarta, Indonesia</span>
-          </div>
+          </div> */}
 
           <div className={styles.socialLinks}>
             <a
