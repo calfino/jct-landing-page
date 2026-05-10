@@ -2,31 +2,25 @@ import { useState, useEffect, useRef } from "react";
 import type { Route } from "./+types/home";
 import styles from "./home.module.css";
 import {
-  MapPin,
   Linkedin,
   Github,
   Youtube,
-  ChevronDown,
-  Code2,
-  Database,
-  Cloud,
-  Network,
-  Award,
-  BookOpen,
   ExternalLink,
   Mail,
   ChevronLeft,
   ChevronRight,
+  Award,
+  ArrowUpRight,
 } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 
-export function meta({ }: Route.MetaArgs) {
+export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Johannes Calvin - Software Engineer" },
+    { title: "Johannes Calvin — Software Engineer" },
     {
       name: "description",
       content:
-        "Software Engineer with 6+ years of experience in frontend development, network infrastructure, and cloud solutions. Co-founder of Jalur5.",
+        "Software Engineer with 6+ years across frontend development, network infrastructure, and cloud. Co-founder of Jalur5.",
     },
   ];
 }
@@ -38,7 +32,16 @@ const experiences = [
     company: "PT Bank Central Asia Tbk (BCA) – Banking",
     description: (
       <>
-        Developing <a href="https://ocean.bca.co.id" target="_blank" rel="noopener noreferrer" className={styles.inlineLink}>Ocean by BCA</a>.
+        Developing{" "}
+        <a
+          href="https://ocean.bca.co.id"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.inlineLink}
+        >
+          Ocean by BCA
+        </a>
+        .
       </>
     ),
   },
@@ -60,13 +63,15 @@ const experiences = [
     period: "Jul 2021 – Mar 2023",
     role: "Quality Assurance Engineer",
     company: "Nodeflux Teknologi Indonesia",
-    description: "Executed QA processes for AI-driven video analytics; ensured data integrity across IoT pipelines and web applications.",
+    description:
+      "Executed QA processes for AI-driven video analytics; ensured data integrity across IoT pipelines and web applications.",
   },
   {
     period: "Jun 2019 – Aug 2019",
     role: "Software Engineer Intern",
     company: "ExxonMobil – Oil & Gas",
-    description: "Built full-stack web app using AngularJS & SharePoint API; liaised with procurement team to build procurement internal web app.",
+    description:
+      "Built full-stack web app using AngularJS & SharePoint API; liaised with procurement team to build procurement internal web app.",
   },
 ];
 
@@ -77,37 +82,48 @@ const education = [
     highlight: "International school with Cambridge curriculum",
   },
   {
-    degree: "Bachelor Degree  Computer Engineering",
+    degree: "Bachelor Degree — Computer Engineering",
     institution: "University of Indonesia",
-    highlight: "Thesis: Design and Evaluation of Cloud Architecture Data Warehouse for Telehealth based on IoT",
+    highlight:
+      "Thesis: Design and Evaluation of Cloud Architecture Data Warehouse for Telehealth based on IoT",
   },
   {
-    degree: "Master Degree  Computer Engineering",
+    degree: "Master Degree — Computer Engineering",
     institution: "University of Indonesia",
     highlight:
       "Thesis: Processing Real-Time Data Architecture Optimization for Health Management System based on Cloud",
-  }
+  },
 ];
 
 const skills = [
   {
     category: "Frontend Development",
-    icon: Code2,
-    items: ["AngularJS", "React", "TypeScript", "Modern JavaScript", "HTML/CSS", "Responsive Design"],
+    items: [
+      "AngularJS",
+      "React",
+      "TypeScript",
+      "Modern JavaScript",
+      "HTML/CSS",
+      "Responsive Design",
+    ],
   },
   {
     category: "Network & Infrastructure",
-    icon: Network,
-    items: ["SDN", "Routing & Switching", "Firewalls", "Load Balancers", "Proxies", "Web Accelerators"],
+    items: [
+      "SDN",
+      "Routing & Switching",
+      "Firewalls",
+      "Load Balancers",
+      "Proxies",
+      "Web Accelerators",
+    ],
   },
   {
     category: "Cloud & DevOps",
-    icon: Cloud,
     items: ["AWS", "GCP", "Docker", "Kubernetes", "CI/CD", "Microservices", "Istio"],
   },
   {
     category: "Data & Backend",
-    icon: Database,
     items: ["Python", "Spark", "Big Data Pipelines", "IoT", "Data Warehousing", "Hadoop"],
   },
 ];
@@ -158,41 +174,70 @@ const portfolio = [
   {
     title: "Ocean by BCA",
     description: "Enterprise web application developed for BCA.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    image: "/business-dashboard-ocean.PNG",
     links: [{ label: "Visit Website", url: "https://ocean.bca.co.id/", icon: ExternalLink }],
   },
   {
     title: "SmartSales",
     description: "Sales tracking and management platform.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    image: "/smartsales-userdashboard.PNG",
     links: [{ label: "Visit Website", url: "https://smartsales.id/", icon: ExternalLink }],
   },
   {
     title: "TravelingYuk",
     description: "Travel planning and booking web application.",
-    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80",
-    links: [{ label: "Visit Website", url: "https://travelingyuk.vercel.app/", icon: ExternalLink }],
+    image: "/travelyuk.PNG",
+    links: [
+      {
+        label: "Visit Website",
+        url: "https://travelingyuk.vercel.app/",
+        icon: ExternalLink,
+      },
+    ],
+  },
+  {
+    title: "Jalur5",
+    description: "Indonesia's largest public-transport information community.",
+    image: "/JALUR5-text-ORI-01.png",
+    links: [{ label: "Visit Website", url: "https://jalur5.com/", icon: ExternalLink }],
+  },
+  {
+    title: "JFC Expense",
+    description: "Personal expense tracker and financial management app.",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
+    links: [
+      {
+        label: "Visit Website",
+        url: "https://jfc-expense.vercel.app/",
+        icon: ExternalLink,
+      },
+    ],
   },
   {
     title: "Johannes Calvin",
     description: "Personal landing page and resume portfolio.",
     image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80",
-    links: [{ label: "Visit Website", url: "https://johannes-calvin.vercel.app/", icon: ExternalLink }],
+    links: [
+      {
+        label: "Visit Website",
+        url: "https://johannes-calvin.vercel.app/",
+        icon: ExternalLink,
+      },
+    ],
   },
 ];
 
-const roles = [
-  "Software Engineer",
-  "Ex QA Engineer",
-  "Ex Network Engineer"
-];
+const roles = ["Software Engineer", "Ex QA Engineer", "Ex Network Engineer"];
 
 const techStack = [
   { name: "Bootstrap", icon: "https://cdn.simpleicons.org/bootstrap/7952B3" },
   { name: "Material UI", icon: "https://cdn.simpleicons.org/mui/007FFF" },
   { name: "MySQL", icon: "https://cdn.simpleicons.org/mysql/4479A1" },
   { name: "Git", icon: "https://cdn.simpleicons.org/git/F05032" },
-  { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+  {
+    name: "AWS",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg",
+  },
   { name: "Docker", icon: "https://cdn.simpleicons.org/docker/2496ED" },
   { name: "Figma", icon: "https://cdn.simpleicons.org/figma/F24E1E" },
   { name: "Firebase", icon: "https://cdn.simpleicons.org/firebase/FFCA28" },
@@ -202,7 +247,10 @@ const techStack = [
   { name: "Angular", icon: "https://cdn.simpleicons.org/angular/DD0031" },
   { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/ffffff" },
   { name: "HTML", icon: "https://cdn.simpleicons.org/html5/E34F26" },
-  { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-plain.svg" },
+  {
+    name: "CSS",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-plain.svg",
+  },
   { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
   { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
 ];
@@ -226,11 +274,10 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    let ticker = setTimeout(() => {
+    const ticker = setTimeout(() => {
       const i = loopNum % roles.length;
       const fullText = roles[i];
-
-      let updatedText = isDeleting
+      const updatedText = isDeleting
         ? fullText.substring(0, roleText.length - 1)
         : fullText.substring(0, roleText.length + 1);
 
@@ -239,7 +286,7 @@ export default function Home() {
       if (!isDeleting && updatedText === fullText) {
         setTypingSpeed(1500);
         setIsDeleting(true);
-      } else if (isDeleting && updatedText === '') {
+      } else if (isDeleting && updatedText === "") {
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
         setTypingSpeed(500);
@@ -251,88 +298,117 @@ export default function Home() {
     return () => clearTimeout(ticker);
   }, [roleText, isDeleting, loopNum, typingSpeed]);
 
-  const scrollToContent = () => {
-    document.getElementById("summary")?.scrollIntoView({ behavior: "smooth" });
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div className={styles.page}>
       <div ref={cursorRef} className={styles.cursorGlow} />
-      {/* Hero Section */}
+
+      {/* Hero */}
       <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <div className={styles.avatarContainer}>
+        <div className={styles.heroLeft}>
+          <p className={styles.greeting}>Hello, I'm</p>
+          <h1 className={styles.name}>
+            <span className={styles.nameLine1}>Johannes</span>
+            <span className={styles.nameLine2}>Calvin</span>
+          </h1>
+          <div className={styles.roleRow}>
+            <span className={styles.roleText}>{roleText}</span>
+            <span className={styles.cursor}>|</span>
+          </div>
+          <p className={styles.heroTagline}>
+            Building for the web, managing networks, growing communities.
+          </p>
+          <div className={styles.heroActions}>
+            <div className={styles.socialLinks}>
+              <a
+                href="https://linkedin.com/in/jecete"
+                className={styles.socialLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin className={styles.socialIcon} />
+              </a>
+              <a
+                href="https://github.com/calfino"
+                className={styles.socialLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className={styles.socialIcon} />
+              </a>
+            </div>
+            <button className={styles.ctaButton} onClick={() => scrollTo("experience")}>
+              See my work <ArrowUpRight size={15} />
+            </button>
+          </div>
+        </div>
+
+        <div className={styles.heroRight}>
+          <div className={styles.avatarFrame}>
             <img src="/pp-jct.png" alt="Johannes Calvin" className={styles.avatar} />
           </div>
-          <p className={styles.greeting}>Hello, I'm</p>
-          <h1 className={styles.name}>Johannes Calvin Tjahaja</h1>
-          <h2 className={styles.title}>
-            {roleText}
-            <span className={styles.cursor}>|</span>
-          </h2>
-
-          {/* <div className={styles.location}>
-            <MapPin className={styles.locationIcon} />
-            <span>Jakarta, Indonesia</span>
-          </div> */}
-
-          <div className={styles.socialLinks}>
-            <a
-              href="https://linkedin.com/in/jecete"
-              className={styles.socialLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Linkedin className={styles.socialIcon} />
-            </a>
-            <a
-              href="https://github.com/calfino"
-              className={styles.socialLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github className={styles.socialIcon} />
-            </a>
+          <div className={styles.statusBadge}>
+            <span className={styles.statusDot} />
+            Available for opportunities
           </div>
-
-          <button className={styles.ctaButton} onClick={scrollToContent}>
-            <span>Explore My Work</span>
-            <ChevronDown className={styles.ctaIcon} />
-          </button>
         </div>
       </section>
 
-      {/* About Me Section */}
-      <section id="summary" className={styles.aboutSection}>
-        <div className={styles.aboutContent}>
-          <div className={styles.aboutTextContainer}>
-            <h2 className={styles.aboutTitle}>WHO I AM?</h2>
-            <p className={styles.aboutParagraph}>
-              My name is Johannes Calvin Tjahaja. I am a professional and enthusiastic programmer in my daily life. I am a quick learner with a self-learning attitude. I love to learn and explore new technologies and am passionate about problem-solving. I love almost all the stacks of web application development and love to make the web more open to the world. My core skill is based on JavaScript and I love to do most of the things using JavaScript. I am available for any kind of job opportunity that suits my skills and interests.
+      {/* About */}
+      <section className={styles.aboutSection}>
+        <div className={styles.aboutGrid}>
+          <div className={styles.aboutText}>
+            <h2 className={styles.aboutHeading}>A bit about me</h2>
+            <p className={styles.aboutPara}>
+              I'm a software engineer based in Jakarta with 6+ years across frontend
+              development, network infrastructure, and cloud engineering. I co-founded{" "}
+              <a
+                href="https://instagram.com/jalur5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.inlineLink}
+              >
+                Jalur5
+              </a>
+              , which grew into Indonesia's largest public-transport info hub. I hold a
+              Master's in Computer Engineering from University of Indonesia, with research in real-time cloud
+              architectures for health systems.
             </p>
           </div>
-          <div className={styles.aboutImageContainer}>
-            <img src="/pp.png" alt="About Me" className={styles.aboutImage} />
-          </div>
-          <div className={styles.aboutVerticalText}>
-            ABOUT ME
+          <div className={styles.aboutStats}>
+            <div className={styles.statItem}>
+              <span className={styles.statNum}>6+</span>
+              <span className={styles.statLabel}>Years of experience</span>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNum}>3</span>
+              <span className={styles.statLabel}>Companies</span>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNum}>2</span>
+              <span className={styles.statLabel}>Publications</span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Experience */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Experience</h2>
-        <div className={styles.timeline}>
+      <section id="experience" className={styles.section}>
+        <div className={styles.sectionLabel}>
+          <span className={styles.sectionNum}>01</span>
+          <h2 className={styles.sectionTitle}>Experience</h2>
+        </div>
+        <div className={styles.expList}>
           {experiences.map((exp, index) => (
-            <div key={index} className={styles.timelineItem}>
-              <div className={styles.experienceCard}>
-                <div className={styles.experienceHeader}>
-                  <h3 className={styles.experienceRole}>{exp.role}</h3>
-                  <span className={styles.experiencePeriod}>{exp.period}</span>
-                </div>
-                <p className={styles.experienceCompany}>{exp.company}</p>
-                <p className={styles.experienceDescription}>{exp.description}</p>
+            <div key={index} className={styles.expRow}>
+              <span className={styles.expPeriod}>{exp.period}</span>
+              <div className={styles.expBody}>
+                <h3 className={styles.expRole}>{exp.role}</h3>
+                <p className={styles.expCompany}>{exp.company}</p>
+                <p className={styles.expDesc}>{exp.description}</p>
               </div>
             </div>
           ))}
@@ -341,28 +417,39 @@ export default function Home() {
 
       {/* Education */}
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Education</h2>
-        <div className={styles.educationGrid}>
+        <div className={styles.sectionLabel}>
+          <span className={styles.sectionNum}>02</span>
+          <h2 className={styles.sectionTitle}>Education</h2>
+        </div>
+        <div className={styles.eduList}>
           {education.map((edu, index) => (
-            <div key={index} className={styles.educationCard}>
-              <h3 className={styles.educationDegree}>{edu.degree}</h3>
-              <p className={styles.educationInstitution}>{edu.institution}</p>
-              <p className={styles.educationHighlight}>{edu.highlight}</p>
+            <div key={index} className={styles.eduRow}>
+              <div className={styles.eduLeft}>
+                <h3 className={styles.eduDegree}>{edu.degree}</h3>
+                <p className={styles.eduInstitution}>{edu.institution}</p>
+              </div>
+              <p className={styles.eduHighlight}>{edu.highlight}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Skills */}
-      <section className={styles.section}>
-        <div className={styles.skillsCarouselHeader}>
-          <hr className={styles.skillsLine} />
-          <h2 className={styles.carouselTitle}>Skills</h2>
-          <hr className={styles.skillsLine} />
+      <section id="skills" className={styles.section}>
+        <div className={styles.sectionLabel}>
+          <span className={styles.sectionNum}>03</span>
+          <h2 className={styles.sectionTitle}>Skills & Stack</h2>
         </div>
-        <div className={styles.carouselContainer}>
+        <div className={styles.skillTags}>
+          {skills.flatMap((s) => s.items).map((skill, i) => (
+            <span key={i} className={styles.skillTag}>
+              {skill}
+            </span>
+          ))}
+        </div>
+        <div className={styles.carouselWrap}>
           <button className={styles.carouselButton} onClick={() => emblaApi?.scrollPrev()}>
-            <ChevronLeft />
+            <ChevronLeft size={18} />
           </button>
           <div className={styles.embla} ref={emblaRef}>
             <div className={styles.embla__container}>
@@ -377,18 +464,47 @@ export default function Home() {
             </div>
           </div>
           <button className={styles.carouselButton} onClick={() => emblaApi?.scrollNext()}>
-            <ChevronRight />
+            <ChevronRight size={18} />
           </button>
         </div>
       </section>
 
       {/* Projects */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Projects</h2>
+      <section id="projects" className={styles.section}>
+        <div className={styles.sectionLabel}>
+          <span className={styles.sectionNum}>04</span>
+          <h2 className={styles.sectionTitle}>Projects</h2>
+        </div>
+
+        <div className={styles.featuredProject}>
+          <img
+            src={portfolio[0].image}
+            alt={portfolio[0].title}
+            className={styles.featuredImg}
+          />
+          <div className={styles.featuredContent}>
+            <span className={styles.featuredBadge}>Featured</span>
+            <h3 className={styles.featuredTitle}>{portfolio[0].title}</h3>
+            <p className={styles.featuredDesc}>{portfolio[0].description}</p>
+            <a
+              href={portfolio[0].links[0].url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.featuredLink}
+            >
+              Visit site <ArrowUpRight size={14} />
+            </a>
+          </div>
+        </div>
+
         <div className={styles.projectsGrid}>
-          {portfolio.map((project, index) => (
+          {portfolio.slice(1).map((project, index) => (
             <div key={index} className={styles.projectCard}>
-              <img src={project.image} alt={project.title} className={styles.projectImage} />
+              <img
+                src={project.image}
+                alt={project.title}
+                className={styles.projectImage}
+              />
               <div className={styles.projectContent}>
                 <h3 className={styles.projectTitle}>{project.title}</h3>
                 <p className={styles.projectDescription}>{project.description}</p>
@@ -417,52 +533,50 @@ export default function Home() {
 
       {/* Publications & Certifications */}
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Publications & Certifications</h2>
-
-        <h3
-          style={{
-            fontSize: "var(--font-size-3)",
-            color: "var(--color-neutral-12)",
-            marginBottom: "var(--space-4)",
-            fontWeight: 600,
-          }}
-        >
-          Publications
-        </h3>
-        <div className={styles.publicationsList}>
-          {publications.map((pub, index) => (
-            <div key={index} className={styles.publicationItem}>
-              <h4 className={styles.publicationTitle}>{pub.title}</h4>
-              <p className={styles.publicationDate}>{pub.date}</p>
-            </div>
-          ))}
+        <div className={styles.sectionLabel}>
+          <span className={styles.sectionNum}>05</span>
+          <h2 className={styles.sectionTitle}>Publications & Certifications</h2>
         </div>
-
-        <h3
-          style={{
-            fontSize: "var(--font-size-3)",
-            color: "var(--color-neutral-12)",
-            marginTop: "var(--space-7)",
-            marginBottom: "var(--space-4)",
-            fontWeight: 600,
-          }}
-        >
-          Certifications
-        </h3>
-        <div className={styles.certificationGrid}>
-          {certifications.map((cert, index) => (
-            <div key={index} className={styles.certificationItem}>
-              <Award className={styles.certificationIcon} />
-              <p className={styles.certificationText}>{cert}</p>
+        <div className={styles.pubCertGrid}>
+          <div>
+            <h3 className={styles.subTitle}>Publications</h3>
+            <div className={styles.pubList}>
+              {publications.map((pub, index) => (
+                <div key={index} className={styles.pubItem}>
+                  <p className={styles.pubItemTitle}>{pub.title}</p>
+                  <span className={styles.pubDate}>{pub.date}</span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <div>
+            <h3 className={styles.subTitle}>Certifications</h3>
+            <div className={styles.certList}>
+              {certifications.map((cert, index) => (
+                <div key={index} className={styles.certItem}>
+                  <Award className={styles.certIcon} />
+                  <span className={styles.certText}>{cert}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
+      </section>
+
+      {/* Contact */}
+      <section className={styles.contactSection}>
+        <p className={styles.contactEyebrow}>Get in touch</p>
+        <h2 className={styles.contactHeading}>Let's work together.</h2>
+        <a href="mailto:calvintjahaja@gmail.com" className={styles.contactEmail}>
+          calvintjahaja@gmail.com
+          <ArrowUpRight size={20} />
+        </a>
       </section>
 
       {/* Footer */}
       <footer className={styles.footer}>
         <div className={styles.footerContent}>
-          <p className={styles.footerText}>© 2026 Johannes Calvin. Software Engineer.</p>
+          <p className={styles.footerText}>© 2026 Johannes Calvin.</p>
           <div className={styles.footerLinks}>
             <a href="mailto:calvintjahaja@gmail.com" className={styles.footerLink}>
               <Mail className={styles.footerLinkIcon} />
