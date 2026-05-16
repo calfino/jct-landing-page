@@ -2,10 +2,10 @@ import type { Route } from "./+types/blog-detail";
 import { Link, redirect } from "react-router";
 import styles from "./home.module.css";
 import { ArrowLeft, Calendar, Clock, BookOpen } from "lucide-react";
-import { articles } from "../data/articles";
+import { getPostBySlug } from "../lib/sanity";
 
 export async function loader({ params }: Route.LoaderArgs) {
-  const article = articles.find((a) => a.slug === params.slug);
+  const article = await getPostBySlug(params.slug);
   if (!article) {
     throw redirect("/blog");
   }
@@ -40,7 +40,7 @@ export default function BlogDetail({ loaderData }: Route.ComponentProps) {
         <header style={{ marginBottom: 'var(--space-7)' }}>
           <div style={{ display: 'flex', gap: '16px', color: 'var(--color-neutral-9)', fontSize: 'var(--font-size-1)', marginBottom: 'var(--space-4)' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Calendar size={16} /> {article.date}
+              <Calendar size={16} /> {new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             </span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <Clock size={16} /> {article.readTime}

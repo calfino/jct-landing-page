@@ -2,7 +2,12 @@ import type { Route } from "./+types/blog";
 import { Link } from "react-router";
 import styles from "./home.module.css";
 import { ArrowUpRight, Calendar, Clock } from "lucide-react";
-import { articles } from "../data/articles";
+import { getAllPosts, type Post } from "../lib/sanity";
+
+export async function loader(): Promise<{ articles: Post[] }> {
+  const articles = await getAllPosts();
+  return { articles };
+}
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -14,7 +19,8 @@ export function meta({ }: Route.MetaArgs) {
   ];
 }
 
-export default function Blog() {
+export default function Blog({ loaderData }: Route.ComponentProps) {
+  const { articles } = loaderData;
   return (
     <div className={styles.page}>
       <section className={styles.section} style={{ paddingTop: 'var(--space-8)' }}>
@@ -65,7 +71,7 @@ export default function Blog() {
                   </h3>
                   <div style={{ display: 'flex', gap: '16px', color: 'var(--color-neutral-9)', fontSize: 'var(--font-size-0)' }}>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <Calendar size={13} /> {article.date}
+                      <Calendar size={13} /> {new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                     </span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <Clock size={13} /> {article.readTime}
